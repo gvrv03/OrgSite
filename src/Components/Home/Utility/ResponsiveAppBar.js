@@ -28,7 +28,7 @@ function ResponsiveAppBar({ children, window }) {
   };
 
   const drawer = (
-    <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
+    <Box onClick={handleDrawerToggle}  sx={{ textAlign: "center" }}>
       <Typography variant="h6" sx={{ my: 2 }}>
         MUI
       </Typography>
@@ -47,7 +47,7 @@ function ResponsiveAppBar({ children, window }) {
   return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
-      <AppBar component="nav" className="bg-white text-black">
+      <AppBar component="nav" color="default" className=" text-black">
         <Toolbar>
           <IconButton
             aria-label="open drawer"

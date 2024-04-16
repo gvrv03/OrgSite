@@ -37,7 +37,7 @@ const NavEdit = () => {
   return (
     <div className="flex flex-col gap-2">
       <div className="flex gap-2">
-        <h2 className="font-semibold md:text-lg text-base">Nav Items</h2>
+        <h2 className="font-semibold md:text-lg text-base">NavItems</h2>
         <button
           onClick={handleAddItem}
           className="border ml-2 px-5 text-xs rounded-md py-1 "

@@ -1,5 +1,6 @@
 import RenderAllModal from "@/Components/Home/Modal/RenderAllModal";
 import ResponsiveAppBar from "@/Components/Home/Utility/ResponsiveAppBar";
+import { UserAuthContexProvider } from "@/Context/UserAuthContext";
 import { UseStoreContextProvider } from "@/Context/UseStoreContext";
 import { Toaster } from "react-hot-toast";
 import "./globals.css";
@@ -20,9 +21,11 @@ export default function RootLayout({ children }) {
       </head>
       <body>
         <UseStoreContextProvider>
-          <RenderAllModal/>
-          <Toaster position="top-center" reverseOrder={false} />
-          {children}
+          <UserAuthContexProvider>
+            <RenderAllModal />
+            <Toaster position="top-center" reverseOrder={false} />
+            {children}
+          </UserAuthContexProvider>
         </UseStoreContextProvider>{" "}
       </body>
     </html>

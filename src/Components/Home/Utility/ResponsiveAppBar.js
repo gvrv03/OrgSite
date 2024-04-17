@@ -1,4 +1,6 @@
 "use client";
+import { useUserAuth } from "@/Context/UserAuthContext";
+import { useAppStore } from "@/Context/UseStoreContext";
 import MenuIcon from "@mui/icons-material/Menu";
 import {
   IconButton,
@@ -11,6 +13,8 @@ import Link from "next/link";
 import React, { memo, useEffect, useState } from "react";
 const navItems = ["Home", "About", "Contact"];
 const ResponsiveAppBar = ({ shadow, position, handleDrawerToggle }) => {
+  const { userDetails } = useAppStore();
+  const { signOut } = useUserAuth();
   const [isSticky, setIsSticky] = useState(false);
   useEffect(() => {
     const handleScroll = () => {
@@ -59,6 +63,14 @@ const ResponsiveAppBar = ({ shadow, position, handleDrawerToggle }) => {
                 <button key={item}>{item}</button>
               ))}
             </List>
+            {userDetails?.isLogin && (
+              <button
+                onClick={signOut}
+                className="bg-primaryColor text-white font-semibold px-10"
+              >
+                Logout
+              </button>
+            )}
           </div>
         </div>
       </nav>

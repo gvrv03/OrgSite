@@ -1,16 +1,23 @@
 "use client";
+import { useUserAuth } from "@/Context/UserAuthContext";
 import Link from "next/link";
 import React from "react";
+import { useState } from "react";
 
 const LoginCom = () => {
+  const { signInUser } = useUserAuth();
+  const [loading, setloading] = useState(false);
+
   return (
     <div className=" w-full  grid place-items-center p-5">
       <form
-        onSubmit={(e) => {
+        onSubmit={async (e) => {
           e.preventDefault();
+          setloading(true);
           const formData = new FormData(e.currentTarget);
-          const formJson = Object.fromEntries(formData.entries());
-          console.log(formJson);
+          const { email, password } = Object.fromEntries(formData.entries());
+          await signInUser(email, password);
+          setloading(false);
         }}
         className="w-full md:w-[500px] flex gap-2 flex-col md:p-5  md:border "
       >
@@ -37,7 +44,7 @@ const LoginCom = () => {
           type="submit"
           className="bg-primaryColor text-white font-semibold py-2"
         >
-          Sign In
+          {loading ? "Loading... " : " Sign In"}
         </button>
         <p className=" text-gray-500 text-center text-xs">
           If you don't have an account ?{" "}

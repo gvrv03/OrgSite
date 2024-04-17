@@ -1,36 +1,97 @@
 "use client";
+import { useUserAuth } from "@/Context/UserAuthContext";
 import Link from "next/link";
 import React from "react";
+import { useState } from "react";
+import { toast } from "react-hot-toast";
 
 const SignUpCom = () => {
+  const [userOTP, setuserOTP] = useState("");
+  const [loading, setloading] = useState(false);
+  const [phoneNo, setphoneNo] = useState("");
+
+  const {
+    sendSMS,
+    otpSend,
+    isUserExist,
+    createNewUser,
+    timer,
+    isTimerRunning,
+    resendOTP,
+  } = useUserAuth();
+
+  const [userData, setuserData] = useState({
+    gender: "male",
+    name: "",
+    email: "",
+    dob: "",
+  });
+  const [password, setpassword] = useState("");
+  function onChange(e) {
+    setuserData({
+      ...userData,
+      [e.target.name]: e.target.value,
+    });
+  }
+
+  const sendOTPtoUser = async (e) => {
+    e.preventDefault();
+    setloading(true);
+    if (phoneNo.length < 9) {
+      toast.error("Enter the number");
+      return setloading(false);
+    }
+    await isUserExist(91 + phoneNo, userData.email);
+    return setloading(false);
+  };
+
+  const verifyOTP = async (e) => {
+    e.preventDefault();
+
+    setloading(true);
+    if (!userOTP) {
+      toast.error("Enter the OTP");
+      return setloading(false);
+    }
+    await createNewUser(parseInt(userOTP), phoneNo, userData, password);
+    return setloading(false);
+  };
+
   return (
     <div className=" w-full  grid place-items-center p-5">
       <form
-        onSubmit={(e) => {
-          e.preventDefault();
-          const formData = new FormData(e.currentTarget);
-          const formJson = Object.fromEntries(formData.entries());
-          console.log(formJson);
-        }}
+        onSubmit={!otpSend ? sendOTPtoUser : verifyOTP}
+        method="POST"
         className="w-full md:w-[500px] flex gap-2 flex-col md:p-5  md:border "
       >
         <h2 className="font-semibold">Sign Up</h2>
         <div className=" border   outline-none flex gap-2">
-          <select name="gender">
+          <select
+            onChange={onChange}
+            value={userData.gender}
+            required={true}
+            name="gender"
+          >
             <option value="Male">Mr</option>
             <option value="Female">Mrs</option>
           </select>
           <input
             type="text"
+            required={true}
+            onChange={onChange}
+            value={userData.name}
+            name="name"
             placeholder="Name"
             className=" outline-none w-full  p-2"
-            name="name"
           />
         </div>
         <input
           type="email"
           placeholder="Email"
           className="  border outline-none w-full  p-2"
+          onChange={onChange}
+          value={userData.email}
+          required={true}
           name="email"
         />
 
@@ -38,28 +99,66 @@ const SignUpCom = () => {
           type="date"
           placeholder="Date of birth"
           className="  border outline-none w-full  p-2"
-          name="DOB"
+          onChange={onChange}
+          required={true}
+          value={userData.dob}
+          name="dob"
         />
 
         <input
           type="password"
           placeholder="Password"
           className="  border outline-none w-full  p-2"
+          onChange={(e) => {
+            setpassword(e.target.value);
+          }}
+          value={password}
+          required={true}
           name="password"
         />
-        <input
-          type="password"
-          placeholder="Conform Password"
-          className="  border outline-none w-full  p-2"
-          name="cpassword"
-        />
+
         <input
           type="number"
           maxLength="10"
           placeholder="Phone No."
           className="  border outline-none w-full  p-2"
+          onChange={(e) => {
+            setphoneNo(e.target.value);
+          }}
+          value={phoneNo}
+          required={true}
           name="phoneNo"
         />
+        {otpSend && (
+          <>
+            <input
+              type="number"
+              onChange={(e) => {
+                setuserOTP(e.target.value);
+              }}
+              required={true}
+              placeholder="Enter OTP"
+              className="  border outline-none w-full  p-2"
+            />
+            <div className="w-full">
+              <button
+                onClick={async () => {
+                  await resendOTP(phoneNo);
+                }}
+                disabled={isTimerRunning ? true : false}
+                className="text-sm text-blue-800 font-semibold  float-right py-2"
+              >
+                Reset OTP in : {timer}s
+              </button>
+            </div>
+            <button
+              type="submit"
+              className="bg-primaryColor text-white font-semibold py-2"
+            >
+              {loading ? "wait..." : "SignUp"}
+            </button>
+          </>
+        )}
         <p className=" text-gray-500  py-2 text-xs">
           By Create an account, I accept the{" "}
           <Link href="/" className="text-xs w-full font-semibold text-blue-700">
@@ -73,12 +172,15 @@ const SignUpCom = () => {
             Privacy Policy
           </Link>
         </p>
-        <button
-          type="submit"
-          className="bg-primaryColor text-white font-semibold py-2"
-        >
-          Send OTP
-        </button>
+
+        {!otpSend && (
+          <button
+            type="submit"
+            className="bg-primaryColor text-white font-semibold py-2"
+          >
+            {loading ? "Wait..." : "Send OTP"}
+          </button>
+        )}
         <p className=" text-gray-500 text-center text-xs">
           If you Already have an account ?{" "}
           <Link

@@ -4,6 +4,9 @@ import { createContext } from "react";
 
 const useStoreContext = createContext();
 export function UseStoreContextProvider({ children }) {
+  const [userDetails, setuserDetails] = useState({});
+
+
   // Modal States
   const [LoginIsOpen, setLoginIsOpen] = useState(false);
   return (
@@ -11,6 +14,8 @@ export function UseStoreContextProvider({ children }) {
       value={{
         LoginIsOpen,
         setLoginIsOpen,
+        userDetails,
+        setuserDetails,
       }}
     >
       {children}

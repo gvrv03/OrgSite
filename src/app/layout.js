@@ -1,8 +1,8 @@
+import RenderAllModal from "@/Components/Home/Modal/RenderAllModal";
 import ResponsiveAppBar from "@/Components/Home/Utility/ResponsiveAppBar";
 import { UseStoreContextProvider } from "@/Context/UseStoreContext";
 import { Toaster } from "react-hot-toast";
 import "./globals.css";
-
 
 export const metadata = {
   title: "ORG Site",
@@ -13,14 +13,15 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
-      <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css"/>
+        <link
+          rel="stylesheet"
+          href="https://unicons.iconscout.com/release/v4.0.8/css/line.css"
+        />
       </head>
-      <body >
+      <body>
         <UseStoreContextProvider>
-        <Toaster
-  position="top-center"
-  reverseOrder={false}
-/>
+          <RenderAllModal/>
+          <Toaster position="top-center" reverseOrder={false} />
           {children}
         </UseStoreContextProvider>{" "}
       </body>

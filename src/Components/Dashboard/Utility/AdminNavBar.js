@@ -1,4 +1,5 @@
 "use client";
+import { useAppStore } from "@/Context/UseStoreContext";
 import MenuIcon from "@mui/icons-material/Menu";
 import { IconButton } from "@mui/material";
 import Link from "next/link";
@@ -6,6 +7,7 @@ import React, { memo, useEffect, useState } from "react";
 
 const AdminNavBar = ({ shadow, position, handleDrawerToggle }) => {
   const [isSticky, setIsSticky] = useState(false);
+  const { setsignOutIsOpen } = useAppStore();
   useEffect(() => {
     const handleScroll = () => {
       const scrollPosition = window.scrollY;
@@ -59,7 +61,12 @@ const AdminNavBar = ({ shadow, position, handleDrawerToggle }) => {
                 <IconButton color="inherit">
                   <i className=" text-xl  w-5 grid place-items-center h-5 pColor uil uil-cog" />
                 </IconButton>
-                <IconButton color="inherit" className="">
+                <IconButton
+                  onClick={() => {
+                    setsignOutIsOpen(true);
+                  }}
+                  color="inherit"
+                >
                   <i className=" text-xl     w-5 grid place-items-center h-5  uil uil-signout   " />
                 </IconButton>
               </div>

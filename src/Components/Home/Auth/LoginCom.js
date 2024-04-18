@@ -3,6 +3,8 @@ import { useUserAuth } from "@/Context/UserAuthContext";
 import Link from "next/link";
 import React from "react";
 import { useState } from "react";
+import Spinner from "../Utility/Spinner";
+import { DefaultBTN } from "../Utility/Utility";
 
 const LoginCom = () => {
   const { signInUser } = useUserAuth();
@@ -40,12 +42,9 @@ const LoginCom = () => {
         >
           Forgot password ?
         </Link>
-        <button
-          type="submit"
-          className="bg-primaryColor text-white font-semibold py-2"
-        >
-          {loading ? "Loading... " : " Sign In"}
-        </button>
+
+        <DefaultBTN  loading={loading} name="Sign In" />
+
         <p className=" text-gray-500 text-center text-xs">
           If you don't have an account ?{" "}
           <Link

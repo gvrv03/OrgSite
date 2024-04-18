@@ -1,13 +1,13 @@
 "use client";
 import { useAppStore } from "@/Context/UseStoreContext";
 import React from "react";
-import LoginModal from "./LoginModal";
+import SignOutModal from "./SignOutModal";
 
 const RenderAllModal = () => {
-  const { LoginIsOpen, setLoginIsOpen } = useAppStore();
+  const { signOutIsOpen, setsignOutIsOpen } = useAppStore();
   return (
     <>
-      <LoginModal state={LoginIsOpen} setState={setLoginIsOpen} />
+      <SignOutModal state={signOutIsOpen} setState={setsignOutIsOpen} />
     </>
   );
 };

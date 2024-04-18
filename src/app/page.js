@@ -1,8 +1,10 @@
-import LoginModal from "@/Components/Home/Modal/LoginModal";
-import Image from "next/image";
+import ResponsiveAppBar from "@/Components/Home/Utility/ResponsiveAppBar";
 
 export default function Home() {
-  return <main>Home sdfhsdg
-    <LoginModal/>
-  </main>;
+  return (
+    <main>
+      <ResponsiveAppBar shadow="shadow-md " position="fixed" />
+      Home sdfhsdg
+    </main>
+  );
 }

@@ -10,12 +10,14 @@ import {
   ListItemText,
 } from "@mui/material";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import React, { memo, useEffect, useState } from "react";
+import AccountMenu from "./AccountMenu";
 const navItems = ["Home", "About", "Contact"];
 const ResponsiveAppBar = ({ shadow, position, handleDrawerToggle }) => {
-  const { userDetails } = useAppStore();
-  const { signOut } = useUserAuth();
+  const { userDetails, setsignOutIsOpen } = useAppStore();
   const [isSticky, setIsSticky] = useState(false);
+  const router = useRouter();
   useEffect(() => {
     const handleScroll = () => {
       const scrollPosition = window.scrollY;
@@ -63,12 +65,16 @@ const ResponsiveAppBar = ({ shadow, position, handleDrawerToggle }) => {
                 <button key={item}>{item}</button>
               ))}
             </List>
-            {userDetails?.isLogin && (
+            {userDetails?.isLogin ? (
+              <AccountMenu />
+            ) : (
               <button
-                onClick={signOut}
+                onClick={() => {
+                  router.push("/Auth/Login");
+                }}
                 className="bg-primaryColor text-white font-semibold px-10"
               >
-                Logout
+                SignIn
               </button>
             )}
           </div>

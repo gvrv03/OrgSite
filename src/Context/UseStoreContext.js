@@ -5,17 +5,15 @@ import { createContext } from "react";
 const useStoreContext = createContext();
 export function UseStoreContextProvider({ children }) {
   const [userDetails, setuserDetails] = useState({});
-
-
   // Modal States
-  const [LoginIsOpen, setLoginIsOpen] = useState(false);
+  const [signOutIsOpen, setsignOutIsOpen] = useState(false);
   return (
     <useStoreContext.Provider
       value={{
-        LoginIsOpen,
-        setLoginIsOpen,
         userDetails,
         setuserDetails,
+        signOutIsOpen,
+        setsignOutIsOpen,
       }}
     >
       {children}

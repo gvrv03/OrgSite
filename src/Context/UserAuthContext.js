@@ -17,7 +17,6 @@ import { toast } from "react-hot-toast";
 import { useAppStore } from "./UseStoreContext";
 const userAuthContext = createContext();
 export function UserAuthContexProvider({ children }) {
-
   const { setuserDetails } = useAppStore();
   const [otpSend, setotpSend] = useState(false);
   const [timer, setTimer] = useState(0);
@@ -52,7 +51,9 @@ export function UserAuthContexProvider({ children }) {
         return await sendSMS(phone);
       }
     } catch (error) {
-      return toast.error( error?.response ? error?.response?.data?.errorMsg:error?.message);
+      return toast.error(
+        error?.response ? error?.response?.data?.errorMsg : error?.message
+      );
     }
   };
 
@@ -68,7 +69,9 @@ export function UserAuthContexProvider({ children }) {
         return toast.success(response?.message);
       }
     } catch (error) {
-      return toast.error( error?.response ? error?.response?.data?.errorMsg:error?.message);
+      return toast.error(
+        error?.response ? error?.response?.data?.errorMsg : error?.message
+      );
     }
   };
 
@@ -105,7 +108,9 @@ export function UserAuthContexProvider({ children }) {
         return toast.success(res?.message);
       }
     } catch (error) {
-      return toast.error( error?.response ? error?.response?.data?.errorMsg:error?.message);
+      return toast.error(
+        error?.response ? error?.response?.data?.errorMsg : error?.message
+      );
     }
   };
 
@@ -118,7 +123,9 @@ export function UserAuthContexProvider({ children }) {
         return toast.success(res?.message);
       }
     } catch (error) {
-      return toast.error( error?.response ? error?.response?.data?.errorMsg:error?.message);
+      return toast.error(
+        error?.response ? error?.response?.data?.errorMsg : error?.message
+      );
     }
   };
 
@@ -162,11 +169,11 @@ export function UserAuthContexProvider({ children }) {
             </div>
           </div>
           <div className="flex border-l border-gray-200">
+            
             <button
               onClick={() => {
                 signOut();
                 toast.dismiss(t.id);
-                setsignInModal(true);
               }}
               className="w-full  border-transparent rounded-none rounded-r-lg p-4 flex items-center justify-center text-sm font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500"
             >
@@ -222,7 +229,9 @@ export function UserAuthContexProvider({ children }) {
         error: error.message,
         totalPages: 0,
       });
-      return toast.error( error?.response ? error?.response?.data?.errorMsg:error?.message);
+      return toast.error(
+        error?.response ? error?.response?.data?.errorMsg : error?.message
+      );
     }
   };
   return (
@@ -240,7 +249,7 @@ export function UserAuthContexProvider({ children }) {
         updateUserDetail,
         usersAll,
         setUsersAll,
-        fetchUsersAll
+        fetchUsersAll,
       }}
     >
       {children}

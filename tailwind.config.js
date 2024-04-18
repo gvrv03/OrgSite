@@ -4,6 +4,8 @@ module.exports = {
   theme: {
     backgroundColor: {
       "primaryColor": "blue",
+      "secondary":"#050124",
+      "secondarylight":"#20185e",
     },
     extend: {
       backgroundImage: {

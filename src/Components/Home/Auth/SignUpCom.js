@@ -4,14 +4,13 @@ import Link from "next/link";
 import React from "react";
 import { useState } from "react";
 import { toast } from "react-hot-toast";
+import { DefaultBTN } from "../Utility/Utility";
 
 const SignUpCom = () => {
   const [userOTP, setuserOTP] = useState("");
   const [loading, setloading] = useState(false);
   const [phoneNo, setphoneNo] = useState("");
-
   const {
-    sendSMS,
     otpSend,
     isUserExist,
     createNewUser,
@@ -136,12 +135,12 @@ const SignUpCom = () => {
               onChange={(e) => {
                 setuserOTP(e.target.value);
               }}
-              required={true}
-              placeholder="Enter OTP"
+                placeholder="Enter OTP"
               className="  border outline-none w-full  p-2"
             />
             <div className="w-full">
               <button
+              type="button"
                 onClick={async () => {
                   await resendOTP(phoneNo);
                 }}
@@ -151,12 +150,8 @@ const SignUpCom = () => {
                 Reset OTP in : {timer}s
               </button>
             </div>
-            <button
-              type="submit"
-              className="bg-primaryColor text-white font-semibold py-2"
-            >
-              {loading ? "wait..." : "SignUp"}
-            </button>
+
+            <DefaultBTN loading={loading} name="Sign Up" />
           </>
         )}
         <p className=" text-gray-500  py-2 text-xs">
@@ -173,14 +168,7 @@ const SignUpCom = () => {
           </Link>
         </p>
 
-        {!otpSend && (
-          <button
-            type="submit"
-            className="bg-primaryColor text-white font-semibold py-2"
-          >
-            {loading ? "Wait..." : "Send OTP"}
-          </button>
-        )}
+        {!otpSend && <DefaultBTN loading={loading} name="Send OTP" />}
         <p className=" text-gray-500 text-center text-xs">
           If you Already have an account ?{" "}
           <Link

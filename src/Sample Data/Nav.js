@@ -62,3 +62,23 @@ export const DashNav = [
     icon: " uil  uil-setting  ",
   },
 ];
+
+
+export const MainNav = [
+  {
+    name: "Home",
+    location: "/",
+    icon: " uil uil-estate",
+  },
+  {
+    name: "Blogs",
+    location: "/Blogs",
+    icon: " uil uil-document-layout-left",
+  },
+  {
+    name: "Products",
+    location: "/Products",
+    icon: " uil  uil-shopping-cart-alt",
+  },
+  
+];

@@ -1,4 +1,5 @@
 "use client";
+import AccountMenu from "@/Components/Home/Utility/AccountMenu";
 import { useAppStore } from "@/Context/UseStoreContext";
 import MenuIcon from "@mui/icons-material/Menu";
 import { IconButton } from "@mui/material";
@@ -58,17 +59,7 @@ const AdminNavBar = ({ shadow, position, handleDrawerToggle }) => {
                 <IconButton color="inherit">
                   <i className=" text-xl  w-5 grid place-items-center h-5 pColor uil uil-bell" />
                 </IconButton>
-                <IconButton color="inherit">
-                  <i className=" text-xl  w-5 grid place-items-center h-5 pColor uil uil-cog" />
-                </IconButton>
-                <IconButton
-                  onClick={() => {
-                    setsignOutIsOpen(true);
-                  }}
-                  color="inherit"
-                >
-                  <i className=" text-xl     w-5 grid place-items-center h-5  uil uil-signout   " />
-                </IconButton>
+               <AccountMenu/>
               </div>
             </div>
           </div>

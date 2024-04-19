@@ -17,6 +17,11 @@ export async function POST(request) {
     const hashPassword = await bcrypt.hash(password, saltRounds);
 
     if (checkOTP) {
+      const checkEmail = await User.findOne({ email: userData?.email });
+      if (checkEmail) {
+        throw new Error("Email Already Exists");
+      }
+
       const userAdd = await User.create({
         image:
           userData.gender === "male"

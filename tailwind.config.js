@@ -6,6 +6,9 @@ module.exports = {
       "primaryColor": "blue",
       "secondary":"#050124",
       "secondarylight":"#20185e",
+      "white":"#ffffff",
+      "grayLight":"#f7f7f7",
+      "primaryExtraLight":"#f2f2ff",
     },
     extend: {
       backgroundImage: {

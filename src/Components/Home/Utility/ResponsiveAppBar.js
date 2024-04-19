@@ -1,6 +1,7 @@
 "use client";
 import { useUserAuth } from "@/Context/UserAuthContext";
 import { useAppStore } from "@/Context/UseStoreContext";
+import { MainNav } from "@/Sample Data/Nav";
 import MenuIcon from "@mui/icons-material/Menu";
 import {
   IconButton,
@@ -13,7 +14,6 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { memo, useEffect, useState } from "react";
 import AccountMenu from "./AccountMenu";
-const navItems = ["Home", "About", "Contact"];
 const ResponsiveAppBar = ({ shadow, position, handleDrawerToggle }) => {
   const { userDetails, setsignOutIsOpen } = useAppStore();
   const [isSticky, setIsSticky] = useState(false);
@@ -61,8 +61,14 @@ const ResponsiveAppBar = ({ shadow, position, handleDrawerToggle }) => {
               </Link>
             </div>
             <List className="gap-5 hidden md:flex">
-              {navItems.map((item) => (
-                <button key={item}>{item}</button>
+              {MainNav.map((item, index) => (
+                <button
+                  key={index}
+                  className="flex gap-2 items-center text-gray-500 hover:text-black hover:font-semibold  "
+                >
+                  <i className={item?.icon} />
+                  <span>{item?.name}</span>
+                </button>
               ))}
             </List>
             {userDetails?.isLogin ? (

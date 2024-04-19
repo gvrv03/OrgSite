@@ -13,10 +13,12 @@ import PersonAdd from "@mui/icons-material/PersonAdd";
 import Settings from "@mui/icons-material/Settings";
 import Logout from "@mui/icons-material/Logout";
 import { useAppStore } from "@/Context/UseStoreContext";
+import { useRouter } from "next/navigation";
 
 export default function AccountMenu() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const { setsignOutIsOpen, userDetails } = useAppStore();
+  const router = useRouter();
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -81,16 +83,27 @@ export default function AccountMenu() {
             {userDetails?.User?.name}
           </label>
           <div className="flex-col flex gap-2">
-            <button className="text-left    text-gray-500 hover:font-semibold hover:text-black text-sm">
+            <button 
+              onClick={() => {
+                router.push("/MyAccount/Profile");
+              }}
+              className="text-left    text-gray-500 hover:font-semibold hover:text-black text-sm">
               My Account
             </button>
             <button className="text-left  text-gray-500 hover:font-semibold hover:text-black text-sm">
               Wishlist
             </button>
-            <button className="text-left  text-gray-500 hover:font-semibold hover:text-black text-sm">
-              Dashboard
-            </button>
-                <button
+            {(userDetails?.isAdmin || userDetails?.isRoot) && (
+              <button
+                onClick={() => {
+                  router.push("/Dashboard");
+                }}
+                className="text-left  text-gray-500 hover:font-semibold hover:text-black text-sm"
+              >
+                Dashboard
+              </button>
+            )}
+            <button
               onClick={() => {
                 setsignOutIsOpen(true);
               }}

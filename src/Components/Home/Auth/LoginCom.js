@@ -46,7 +46,7 @@ const LoginCom = () => {
         <DefaultBTN  loading={loading} name="Sign In" />
 
         <p className=" text-gray-500 text-center text-xs">
-          If you don't have an account ?{" "}
+          If you dont have an account ?{" "}
           <Link
             href="/Auth/SignUp"
             className="text-xs w-full font-semibold text-blue-700"

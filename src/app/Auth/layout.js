@@ -4,7 +4,7 @@ import { useAppStore } from "@/Context/UseStoreContext";
 import { useRouter } from "next/navigation";
 import React from "react";
 
-const layout = ({ children }) => {
+const AuthLayout = ({ children }) => {
   const { userDetails } = useAppStore();
   const router = useRouter();
 
@@ -21,4 +21,4 @@ const layout = ({ children }) => {
   );
 };
 
-export default layout;
+export default AuthLayout;

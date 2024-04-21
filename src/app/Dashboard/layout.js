@@ -43,7 +43,7 @@ function ResponsiveDrawer({ window, children }) {
             boxShadow: "none",
             
           }}
-          className="z-20  "
+          className="z-20 border-b "
         >
           <AdminNavBar  handleDrawerToggle={handleDrawerToggle} />
         </AppBar>

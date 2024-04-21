@@ -33,13 +33,7 @@ export async function POST(request) {
       isSuccess: false,
       message: result.message,
     });
-
-    // return NextResponse.json({
-    //   userExist: userExist ? true : false,
-    //   hash: hashedOTP,
-    //   isSuccess: true,
-    //   message: "OTP Send",
-    // });
+    
   } catch (error) {
     return NextResponse.json(
       {

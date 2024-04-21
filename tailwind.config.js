@@ -9,6 +9,7 @@ module.exports = {
       "white":"#ffffff",
       "grayLight":"#f7f7f7",
       "primaryExtraLight":"#f2f2ff",
+      "red":"red",
     },
     extend: {
       backgroundImage: {

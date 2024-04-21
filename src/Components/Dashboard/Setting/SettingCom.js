@@ -6,9 +6,9 @@ const SettingCom = () => {
   return (
     <div>
       <BasicCom />
-      <div className="h-[2px] my-5 bg-gray-100 " />
+      <div className="h-[2px] my-5 bg-grayLight" />
       <NavEdit />
-      <div className="h-[2px] my-5 bg-gray-100 " />
+      <div className="h-[2px] my-5 bg-grayLight" />
     </div>
   );
 };

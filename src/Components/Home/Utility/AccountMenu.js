@@ -52,7 +52,7 @@ export default function AccountMenu() {
           elevation: 0,
           sx: {
             overflow: "visible",
-            filter: "drop-shadow(0px 2px 8px rgba(0,0,0,0.32))",
+            filter: "drop-shadow(0px 0.5px 1px rgba(0,0,0,0.32))",
             mt: 1.5,
             "& .MuiAvatar-root": {
               width: 32,
@@ -78,14 +78,14 @@ export default function AccountMenu() {
         anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
       >
         <div className=" flex flex-col gap-3 px-5 p-2">
-          <label className="border-b-2 pb-2 border-blue-950">
-            {" "}
+          <label className="border-b-2 flex gap-2 items-center justify-center pb-2 border-blue-950">
+<i className="uil uil-user" />
             {userDetails?.User?.name}
           </label>
           <div className="flex-col flex gap-2">
             <button 
               onClick={() => {
-                router.push("/MyAccount/Profile");
+                router.push("/MyAccount");
               }}
               className="text-left    text-gray-500 hover:font-semibold hover:text-black text-sm">
               My Account

@@ -13,6 +13,7 @@ import { DashNav } from "@/Sample Data/Nav";
 import SideDrawer from "@/Components/Dashboard/Utility/SideDrawer";
 import { useAppStore } from "@/Context/UseStoreContext";
 import AccessDenied from "@/Components/Home/Utility/AccessDenied";
+import { UseDashboardContextProvider } from "@/Context/UseDashboardContext";
 const drawerWidth = 300;
 
 function ResponsiveDrawer({ window, children }) {
@@ -41,11 +42,10 @@ function ResponsiveDrawer({ window, children }) {
             width: { sm: `calc(100% - ${drawerWidth}px)` },
             ml: { sm: `${drawerWidth}px` },
             boxShadow: "none",
-            
           }}
           className="z-20 border-b "
         >
-          <AdminNavBar  handleDrawerToggle={handleDrawerToggle} />
+          <AdminNavBar handleDrawerToggle={handleDrawerToggle} />
         </AppBar>
         <Box
           component="nav"
@@ -100,7 +100,8 @@ function ResponsiveDrawer({ window, children }) {
           className="p-5"
         >
           <Toolbar />
-          {children}
+
+          <UseDashboardContextProvider>{children}</UseDashboardContextProvider>
         </Box>
       </Box>
     );

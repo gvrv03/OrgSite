@@ -7,6 +7,7 @@ import {
   SendSMSToUserURL,
   signInUserURL,
   getUsersURL,
+  getUserRole,
 } from "@/helper/allLinks";
 
 //------------------Fetch Users------------------
@@ -98,4 +99,22 @@ export const checkUser = async () => {
   };
   const res = await axios.post(url, dataUser);
   return await res?.data;
+};
+
+// ------------------Get User Role-------------
+export const getUser = async (id) => {
+  const url = getUserRole;
+  const res = await axios.get(`${url}?id=${id}`);
+  const data = await res?.data;
+  return data;
+};
+
+export const updateURole = async (userData) => {
+  const url = getUserRole;
+  const headers = {
+    Authorization: "Bearer " + localStorage.getItem("token"),
+  };
+  const res = await axios.post(url, userData, { headers });
+  const data = await res?.data;
+  return data;
 };

@@ -8,3 +8,4 @@ export const checkUserExistURL = baseUrl + "api/CheckUserExists";
 export const RegisterUserURL = baseUrl + "api/Register";
 export const checkUserURL = baseUrl + "api/CheckLogin";
 export const getUsersURL = baseUrl + "api/Register";
+export const getUserRole = baseUrl + "api/CheckUserRole";

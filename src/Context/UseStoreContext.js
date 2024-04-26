@@ -14,6 +14,7 @@ export function UseStoreContextProvider({ children }) {
     setrefresh(newRandomString);
   };
   // Modal States
+  const [isUpdateModal, setisUpdateModal] = useState(false);
   const [signOutIsOpen, setsignOutIsOpen] = useState(false);
   return (
     <useStoreContext.Provider
@@ -24,6 +25,8 @@ export function UseStoreContextProvider({ children }) {
         setsignOutIsOpen,
         refresh,
         handleGenerateRandomString,
+        isUpdateModal,
+        setisUpdateModal,
       }}
     >
       {children}

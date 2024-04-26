@@ -11,6 +11,7 @@ import TableRow from "@mui/material/TableRow";
 import TableSkeleton from "@/Components/Skeleton/TableSkeleton";
 import { IconButton } from "@mui/material";
 import EditTable from "./EditTable";
+import ReturnRole from "./ReturnRole";
 
 export default function MaintableCom({ data, colData, isLoading, count }) {
   return (
@@ -40,8 +41,7 @@ export default function MaintableCom({ data, colData, isLoading, count }) {
               <TableRow>
                 {count > 0 && (
                   <TableCell
-        className="bg-grayLight"
-
+                    className="bg-grayLight"
                     style={{
                       fontSize: "12px",
                       border: "none",
@@ -57,8 +57,7 @@ export default function MaintableCom({ data, colData, isLoading, count }) {
                 {colData?.map((col, index) => (
                   <TableCell
                     key={index}
-        className="bg-grayLight"
-
+                    className="bg-grayLight"
                     style={{
                       fontSize: "12px",
                       background: "#212/22b",
@@ -87,8 +86,7 @@ export default function MaintableCom({ data, colData, isLoading, count }) {
                 ))}
                 {count > 0 && (
                   <TableCell
-        className="bg-grayLight"
-
+                    className="bg-grayLight"
                     style={{
                       fontSize: "12px",
                       border: "none",
@@ -121,7 +119,7 @@ export default function MaintableCom({ data, colData, isLoading, count }) {
                     {colData?.map((col, index) => {
                       return (
                         <TableCell
-                        // contentEditable={true}
+                          // contentEditable={true}
                           key={index}
                           style={{
                             fontSize: "12px",
@@ -142,15 +140,17 @@ export default function MaintableCom({ data, colData, isLoading, count }) {
                           col === "keywords" ||
                           col === "reviews" ||
                           col === "notification" ||
-                          col === "password"
-                            ? null
-                            : col === "date"
-                            ? moment(item[col]).format("DD/MM/YYYY")
-                            : col === "createdAt"
-                            ? moment(item[col]).format("DD/MM/YYYY")
-                            : col === "updatedAt"
-                            ? moment(item[col]).format("DD/MM/YYYY")
-                            : item[col]}
+                          col === "password" ? null : col === "role" ? (
+                            <ReturnRole id={item[col]} />
+                          ) : col === "date" ? (
+                            moment(item[col]).format("DD/MM/YYYY")
+                          ) : col === "createdAt" ? (
+                            moment(item[col]).format("DD/MM/YYYY")
+                          ) : col === "updatedAt" ? (
+                            moment(item[col]).format("DD/MM/YYYY")
+                          ) : (
+                            item[col]
+                          )}
                         </TableCell>
                       );
                     })}
@@ -162,7 +162,7 @@ export default function MaintableCom({ data, colData, isLoading, count }) {
                       }}
                       align="center"
                     >
-                      <EditTable/>
+                      <EditTable />
                     </TableCell>
                   </TableRow>
                 );

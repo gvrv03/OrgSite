@@ -14,6 +14,9 @@ import Settings from "@mui/icons-material/Settings";
 import Logout from "@mui/icons-material/Logout";
 import { useAppStore } from "@/Context/UseStoreContext";
 import { useRouter } from "next/navigation";
+import Script from "next/script";
+import RazorpayBTN from "./RazorpayBTN";
+import { Suspense } from "react";
 
 export default function AccountMenu() {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -79,20 +82,22 @@ export default function AccountMenu() {
       >
         <div className=" flex flex-col gap-3 px-5 p-2">
           <label className="border-b-2 flex gap-2 items-center justify-center pb-2 border-blue-950">
-<i className="uil uil-user" />
+            <i className="uil uil-user" />
             {userDetails?.User?.name}
           </label>
           <div className="flex-col flex gap-2">
-            <button 
+            <button
               onClick={() => {
                 router.push("/MyAccount");
               }}
-              className="text-left    text-gray-500 hover:font-semibold hover:text-black text-sm">
+              className="text-left    text-gray-500 hover:font-semibold hover:text-black text-sm"
+            >
               My Account
             </button>
             <button className="text-left  text-gray-500 hover:font-semibold hover:text-black text-sm">
               Wishlist
             </button>
+
             {(userDetails?.isAdmin || userDetails?.isRoot) && (
               <button
                 onClick={() => {

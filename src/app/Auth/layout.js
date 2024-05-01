@@ -1,4 +1,5 @@
 "use client";
+import RazorpayBTN from "@/Components/Home/Utility/RazorpayBTN";
 import ResponsiveAppBar from "@/Components/Home/Utility/ResponsiveAppBar";
 import { useAppStore } from "@/Context/UseStoreContext";
 import { useRouter } from "next/navigation";
@@ -14,9 +15,12 @@ const AuthLayout = ({ children }) => {
     }, 100);
   }
   return (
-    <div>
-      <ResponsiveAppBar shadow="shadow-md " position="fixed" />
+    <div className="container m-auto">
+      <ResponsiveAppBar position="fixed" />
       {children}
+      <div className="grid place-items-center">
+        <RazorpayBTN paymentID="pl_O5EV6jX71yOW9B" />
+      </div>{" "}
     </div>
   );
 };

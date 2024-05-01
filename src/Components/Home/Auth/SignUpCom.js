@@ -63,7 +63,7 @@ const SignUpCom = () => {
         method="POST"
         className="w-full md:w-[500px] flex gap-2 flex-col md:p-5  md:border "
       >
-        <h2 className="font-semibold">Sign Up</h2>
+        <h2 className="font-semibold hidden md:block">Sign Up</h2>
         <div className=" border   outline-none flex gap-2">
           <select
             onChange={onChange}
@@ -135,12 +135,12 @@ const SignUpCom = () => {
               onChange={(e) => {
                 setuserOTP(e.target.value);
               }}
-                placeholder="Enter OTP"
+              placeholder="Enter OTP"
               className="  border outline-none w-full  p-2"
             />
             <div className="w-full">
               <button
-              type="button"
+                type="button"
                 onClick={async () => {
                   await resendOTP(phoneNo);
                 }}

@@ -23,7 +23,7 @@ const LoginCom = () => {
         }}
         className="w-full md:w-[500px] flex gap-2 flex-col md:p-5  md:border "
       >
-        <h2 className="font-semibold">Sign In</h2>
+        <h2 className="font-semibold md:block hidden">Sign In</h2>
         <input
           type="text"
           placeholder="Email"
@@ -43,7 +43,7 @@ const LoginCom = () => {
           Forgot password ?
         </Link>
 
-        <DefaultBTN  loading={loading} name="Sign In" />
+        <DefaultBTN loading={loading} name="Sign In" />
 
         <p className=" text-gray-500 text-center text-xs">
           If you dont have an account ?{" "}
